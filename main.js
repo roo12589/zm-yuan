@@ -1,3 +1,3 @@
-const home = require('./modules/home');
+const myHome = require('./modules/home');
 
-home.main();
+myHome.main();

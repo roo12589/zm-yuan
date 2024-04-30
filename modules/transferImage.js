@@ -5,6 +5,7 @@ function main() {
     const sc = JSON.parse(zdjlJSON);
     const { vars } = sc
     // console.log("vars", vars);
+    const arr = []
     for (let key in vars) {
         const name = vars[key].name
         const value = vars[key].value.imageData.data
@@ -12,9 +13,10 @@ function main() {
         console.log("value", value);
 
         saveBase64Image(value, `./modules/images/${name}.png`)
-
+        arr.push({ name, value })
     }
-
+ 
+    fs.writeFileSync('./modules/imgBase64Map.js', `module.exports= ${ JSON.stringify(arr)}`);
 }
 main()
 function saveBase64Image(base64Data, filename) {
